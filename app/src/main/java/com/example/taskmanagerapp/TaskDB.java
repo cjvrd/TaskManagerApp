@@ -31,6 +31,7 @@ public class TaskDB extends SQLiteOpenHelper {
         // Handle any database schema changes in future versions of your app
     }
 
+    //adds task to db with params
     public Boolean addTask(Task task) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -38,7 +39,6 @@ public class TaskDB extends SQLiteOpenHelper {
         values.put("title", task.getTitle());
         values.put("description", task.getDescription());
         values.put("date", task.getDate());
-
 
         long rowId = db.insert(TABLE_NAME, null, values);
         db.close();
@@ -51,6 +51,7 @@ public class TaskDB extends SQLiteOpenHelper {
         }
     }
 
+    //gets a specific task by id
     public Task getTask(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME, new String[] { "id", "title", "description", "date"},
@@ -64,6 +65,7 @@ public class TaskDB extends SQLiteOpenHelper {
         return task;
     }
 
+    //gets list of all tasks
     public List<Task> getAllTasks() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, null);
@@ -77,6 +79,7 @@ public class TaskDB extends SQLiteOpenHelper {
         return result;
     }
 
+    //deletes task from db by id
     public Boolean deleteTask(String id) {
         SQLiteDatabase db = getWritableDatabase();
         String whereClause = "id" + " = ?";

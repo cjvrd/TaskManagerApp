@@ -33,6 +33,7 @@ public class EditTask extends AppCompatActivity {
         //get task from intent
         task = getIntent().getParcelableExtra("task");
 
+        //gets title, desc and date from task
         String taskTitle = task.getTitle();
         String taskDescription = task.getDescription();
         String taskDate = task.getDate();
@@ -86,16 +87,18 @@ public class EditTask extends AppCompatActivity {
         //replace with new task
         taskDB.addTask(task);
 
+        //go back to main activity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
+    //goes back to main activity without changing task
     public void returnButtonClick(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    // Function to check if a date string is valid
+    //checks if a date string is valid
     private boolean isValidDate(String dateStr) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         sdf.setLenient(false); // Make sure the date parsing is strict

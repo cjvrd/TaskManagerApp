@@ -54,14 +54,16 @@ public class AddTask extends AppCompatActivity {
             return;
         }
 
+        //adds new task to the DB
         Task task = new Task(setTaskId(), title, description, dueDate);
         taskDB.addTask(task);
 
+        //goes back to main activity
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 
-    // Function to check if a date string is valid
+    //checks if a date string is valid
     private boolean isValidDate(String dateStr) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         sdf.setLenient(false); // Make sure the date parsing is strict

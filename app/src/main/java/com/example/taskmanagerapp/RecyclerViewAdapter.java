@@ -60,6 +60,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             viewEditTaskButton.setOnClickListener(v -> goToEditTaskPage());
         }
 
+        //gets position of task thats been clicked and removes it from taskDB
+        //then updates the view so it is removed
         private void completeTask() {
             int position = getAdapterPosition();
             Task task = taskList.get(position);
@@ -69,6 +71,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             notifyItemRemoved(position);
         }
 
+        //gets the position of the task thats been clicked
+        //then uses intent and passes the task onto the EditTask activity
+        //edit task activity handles the edits
         private void goToEditTaskPage() {
             int position = getAdapterPosition();
             Task task = taskList.get(position);
